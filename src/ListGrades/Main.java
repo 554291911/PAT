@@ -1,13 +1,9 @@
 package ListGrades;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
@@ -15,8 +11,8 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		try {
-			System.setIn(new FileInputStream("C:/Users/xxh/Desktop/workspace/PAT/src/ListGrades/input.txt"));
-		} catch (FileNotFoundException e) {
+			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
+		} catch (java.io.FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		Scanner in = new Scanner(System.in);
@@ -39,12 +35,12 @@ public class Main {
 		int low = Integer.parseInt(s[0]);
 		int high = Integer.parseInt(s[1]);
 		for (int i = list.size() - 1; i >= 0; i--) {
-			if (list.get(i) >= low && list.get(i) <= high){
+			if (list.get(i) >= low && list.get(i) <= high) {
 				System.out.println(map.get(list.get(i)));
 				result++;
 			}
 		}
-		if(result==0)
+		if (result == 0)
 			System.out.println("NONE");
 	}
 }

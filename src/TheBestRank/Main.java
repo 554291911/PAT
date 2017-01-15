@@ -1,7 +1,5 @@
 package TheBestRank;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,8 +10,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			System.setIn(new FileInputStream("F:\\STSWorkSpace\\PAT\\src\\TheBestRank\\input.txt"));
-		} catch (FileNotFoundException e) {
+			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
+		} catch (java.io.FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		HashMap<String, Integer> Amap = new HashMap<String, Integer>();

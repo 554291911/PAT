@@ -1,15 +1,13 @@
 package AplusBFormat;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
 		try {
-			System.setIn(new FileInputStream("C:/Users/xxh/Desktop/workspace/PAT/src/AplusBFormat/input.txt"));
-		} catch (FileNotFoundException e) {
+			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
+		} catch (java.io.FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		Scanner in = new Scanner(System.in);

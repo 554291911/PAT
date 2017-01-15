@@ -1,7 +1,5 @@
 package Radix;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -21,8 +19,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			System.setIn(new FileInputStream("F:\\STSWorkSpace\\PAT\\src\\Radix\\input.txt"));
-		} catch (FileNotFoundException e) {
+			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
+		} catch (java.io.FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		Scanner in = new Scanner(System.in);

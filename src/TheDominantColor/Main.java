@@ -1,7 +1,5 @@
 package TheDominantColor;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -10,8 +8,8 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		try {
-			System.setIn(new FileInputStream("C:/Users/xxh/Desktop/workspace/PAT/src/ListGrades/input.txt"));
-		} catch (FileNotFoundException e) {
+			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
+		} catch (java.io.FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		Scanner in = new Scanner(System.in);
@@ -32,7 +30,7 @@ public class Main {
 		Iterator<Entry<Integer, Integer>> it = map.entrySet().iterator();
 		while (it.hasNext()) {
 			Entry<Integer, Integer> entry = it.next();
-			if (entry.getValue() > result){
+			if (entry.getValue() > result) {
 				result = entry.getValue();
 				count = entry.getKey();
 			}

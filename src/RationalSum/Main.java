@@ -1,7 +1,5 @@
 package RationalSum;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
@@ -27,9 +25,9 @@ public class Main {
 		String[] strs = result.split("/");
 		int numUp = Integer.parseInt(strs[0]);
 		int numDown = Integer.parseInt(strs[1]);
-		int num = numUp / numDown;// ÕûÊý²¿·Ö
-		numUp = numUp - numDown * num;// ÓàÊý·Ö×Ó²¿·Ö
-		int gcd = Math.abs(gcd(numUp, numDown));// ×î´ó¹«Ô¼Êý
+		int num = numUp / numDown;// ï¿½ï¿½ï¿½ï¿½ï¿½
+		numUp = numUp - numDown * num;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½
+		int gcd = Math.abs(gcd(numUp, numDown));// ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½
 		numUp /= gcd;
 		numDown /= gcd;
 		String re = "";
@@ -46,8 +44,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			System.setIn(new FileInputStream("C:/Users/xxh/Desktop/workspace/PAT/src/RationalSum/input.txt"));
-		} catch (FileNotFoundException e) {
+			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
+		} catch (java.io.FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		Scanner in = new Scanner(System.in);
