@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -14,90 +15,72 @@ public class Main {
 		} catch (java.io.FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		HashMap<String, Integer> Amap = new HashMap<String, Integer>();
-		HashMap<Integer, Integer> AmapOrder = new HashMap<Integer, Integer>();
-		HashSet<Integer> Aset = new HashSet<Integer>();
-		HashMap<String, Integer> Cmap = new HashMap<String, Integer>();
-		HashMap<Integer, Integer> CmapOrder = new HashMap<Integer, Integer>();
-		HashSet<Integer> Cset = new HashSet<Integer>();
-		HashMap<String, Integer> Mmap = new HashMap<String, Integer>();
-		HashMap<Integer, Integer> MmapOrder = new HashMap<Integer, Integer>();
-		HashSet<Integer> Mset = new HashSet<Integer>();
-		HashMap<String, Integer> Emap = new HashMap<String, Integer>();
-		HashMap<Integer, Integer> EmapOrder = new HashMap<Integer, Integer>();
-		HashSet<Integer> Eset = new HashSet<Integer>();
 		Scanner in = new Scanner(System.in);
 		int n = in.nextInt();
 		int m = in.nextInt();
+		HashMap<String, Integer> aMap = new HashMap<String, Integer>();
+		List<Integer> aList = new ArrayList<Integer>();
+		HashSet<Integer> aSet = new HashSet<Integer>();
+		HashMap<String, Integer> cMap = new HashMap<String, Integer>();
+		List<Integer> cList = new ArrayList<Integer>();
+		HashSet<Integer> cSet = new HashSet<Integer>();
+		HashMap<String, Integer> mMap = new HashMap<String, Integer>();
+		List<Integer> mList = new ArrayList<Integer>();
+		HashSet<Integer> mSet = new HashSet<Integer>();
+		HashMap<String, Integer> eMap = new HashMap<String, Integer>();
+		List<Integer> eList = new ArrayList<Integer>();
+		HashSet<Integer> eSet = new HashSet<Integer>();
 		for (int i = 0; i < n; i++) {
 			String name = in.next();
 			int C = in.nextInt();
 			int M = in.nextInt();
 			int E = in.nextInt();
 			int A = (C + M + E) / 3;
-			Amap.put(name, A);
-			Aset.add(A);
-			Cmap.put(name, C);
-			Cset.add(C);
-			Mmap.put(name, M);
-			Mset.add(M);
-			Mmap.put(name, M);
-			Mset.add(M);
-			Emap.put(name, E);
-			Eset.add(E);
+			aMap.put(name, A);
+			aSet.add(A);
+			cMap.put(name, C);
+			cSet.add(C);
+			mMap.put(name, M);
+			mSet.add(M);
+			eMap.put(name, E);
+			eSet.add(E);
 		}
-		AmapOrder = removeDuplicate(Aset);
-		CmapOrder = removeDuplicate(Cset);
-		MmapOrder = removeDuplicate(Mset);
-		EmapOrder = removeDuplicate(Eset);
+		aList = sort(aSet);
+		cList = sort(cSet);
+		mList = sort(mSet);
+		eList = sort(eSet);
 		for (int i = 0; i < m; i++) {
 			String name = in.next();
-			try {
-				getIndex(name, Amap, AmapOrder, Cmap, CmapOrder, Mmap, MmapOrder, Emap, EmapOrder);
-			} catch (NullPointerException e) {
-				System.out.println("N/A");
-			}
+			getIndex(aList.indexOf(aMap.get(name)), cList.indexOf(cMap.get(name)), mList.indexOf(mMap.get(name)),
+					eList.indexOf(eMap.get(name)));
 		}
 	}
 
-	private static void getIndex(String name, HashMap<String, Integer> Amap, HashMap<Integer, Integer> amapOrder,
-			HashMap<String, Integer> Cmap, HashMap<Integer, Integer> cmapOrder, HashMap<String, Integer> Mmap,
-			HashMap<Integer, Integer> mmapOrder, HashMap<String, Integer> Emap, HashMap<Integer, Integer> emapOrder) {
-		int score = Amap.get(name);
-		int min = Integer.MAX_VALUE;
-		String menu = "";
-		int i = amapOrder.get(score);
-		if (min > i) {
-			min = i;
-			menu = "A";
-		}
-		score = Cmap.get(name);
-		i = cmapOrder.get(score);
-		if (min > i) {
-			min = i;
-			menu = "C";
-		}
-		score = Mmap.get(name);
-		i = mmapOrder.get(score);
-		if (min > i) {
-			min = i;
-			menu = "M";
-		}
-		score = Emap.get(name);
-		i = emapOrder.get(score);
-		if (min > i) {
-			min = i;
-			menu = "E";
-		}
-		System.out.println(min + 1 + " " + menu);
+	private static void getIndex(int A, int C, int M, int E) {
+		if (A == -1)
+			A = Integer.MAX_VALUE;
+		if (C == -1)
+			C = Integer.MAX_VALUE;
+		if (M == -1)
+			M = Integer.MAX_VALUE;
+		if (E == -1)
+			E = Integer.MAX_VALUE;
+		int min = Math.min(Math.min(A, C), Math.min(M, E));
+		if (min == Integer.MAX_VALUE)
+			System.out.println("N/A");
+		else if (A == min)
+			System.out.println(min + 1 + " " + "A");
+		else if (C == min)
+			System.out.println(min + 1 + " " + "C");
+		else if (M == min)
+			System.out.println(min + 1 + " " + "M");
+		else if (E == min)
+			System.out.println(min + 1 + " " + "E");
 	}
 
-	public static HashMap<Integer, Integer> removeDuplicate(HashSet<Integer> set) {
-		ArrayList<Integer> h = new ArrayList<Integer>(set);
-		Collections.sort(h, Collections.reverseOrder());
-		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(h.size());
-		for (int i = 0; i < h.size(); i++)
-			map.put(h.get(i), i);
-		return map;
+	private static List<Integer> sort(HashSet<Integer> set) {
+		List<Integer> arrayList = new ArrayList<Integer>(set);
+		Collections.sort(arrayList, Collections.reverseOrder());
+		return arrayList;
 	}
 }
