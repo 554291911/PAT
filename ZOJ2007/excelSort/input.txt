@@ -1,0 +1,13 @@
+3 1
+2 lisi 60
+3 wangwu 60
+1 zhangsan 60
+3 2
+1 lisi 60
+3 lisi 60
+2 lisi 60
+3 3
+3 lisi 60
+2 lisi 60
+1 lisi 60
+0 0
