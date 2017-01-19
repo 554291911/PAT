@@ -13,8 +13,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		Scanner in = new Scanner(System.in);
-		int num = Integer.parseInt(in.nextLine());
-		for (int k = 0; k < num; k++) {
+		while (in.hasNext()) {
 			int n = Integer.parseInt(in.nextLine());
 			ArrayList<String> listIn = new ArrayList<String>();
 			ArrayList<String> listOut = new ArrayList<String>();
