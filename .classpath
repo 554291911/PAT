@@ -5,6 +5,9 @@
 	<classpathentry kind="src" path="ZOJ2006"/>
 	<classpathentry kind="src" path="ZOJ2007"/>
 	<classpathentry kind="src" path="ZOJ2008"/>
+	<classpathentry kind="src" path="ZOJ2009"/>
+	<classpathentry kind="src" path="ZOJ2012"/>
+	<classpathentry kind="src" path="ZOJ2011"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
