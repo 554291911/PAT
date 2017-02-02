@@ -1,28 +1,27 @@
 package A1025PATRanking25;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
 
-	static boolean LOCAL = System.getSecurityManager() == null;
-
 	public static void main(String[] args) {
-		if (LOCAL) {
-			try {
-				System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
-			} catch (FileNotFoundException e) {
-				LOCAL = false;
-			}
+		try {
+			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
+		} catch (FileNotFoundException e) {
 		}
 		HashMap<String, Student> totalMap = new HashMap<String, Student>();
-		Scanner in = new Scanner(System.in);
+		InputReader in = new InputReader(System.in);
 		int wai = in.nextInt();
 		ArrayList<Student>[] map = new ArrayList[wai];
 		for (int i = 0; i < map.length; i++)
@@ -80,18 +79,43 @@ public class Main {
 			System.out.println(list.get(i).getKey() + " " + list.get(i).getValue().final_rank + " "
 					+ list.get(i).getValue().local_number + " " + list.get(i).getValue().local_rank);
 	}
-}
 
-class Student {
-	String name;
-	int score;
-	int final_rank;
-	int local_number;
-	int local_rank;
+	static class Student {
+		String name;
+		int score;
+		int final_rank;
+		int local_number;
+		int local_rank;
 
-	public Student(String name, int score, int local_number) {
-		this.name = name;
-		this.score = score;
-		this.local_number = local_number;
+		public Student(String name, int score, int local_number) {
+			this.name = name;
+			this.score = score;
+			this.local_number = local_number;
+		}
+	}
+
+	static class InputReader {
+		public BufferedReader reader;
+		public StringTokenizer tokenizer;
+
+		public InputReader(InputStream stream) {
+			reader = new BufferedReader(new InputStreamReader(stream), 32768);
+			tokenizer = null;
+		}
+
+		public int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+		public String next() {
+			while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+				try {
+					tokenizer = new StringTokenizer(reader.readLine());
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			return tokenizer.nextToken();
+		}
 	}
 }

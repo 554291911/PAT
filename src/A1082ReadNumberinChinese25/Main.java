@@ -1,4 +1,4 @@
-package ReadNumberinChinese;
+package A1082ReadNumberinChinese25;
 
 import java.util.Scanner;
 

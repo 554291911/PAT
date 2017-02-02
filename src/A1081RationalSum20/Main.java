@@ -1,4 +1,4 @@
-package RationalSum;
+package A1081RationalSum20;
 
 import java.util.Scanner;
 
@@ -25,9 +25,9 @@ public class Main {
 		String[] strs = result.split("/");
 		int numUp = Integer.parseInt(strs[0]);
 		int numDown = Integer.parseInt(strs[1]);
-		int num = numUp / numDown;// �����
-		numUp = numUp - numDown * num;// ������Ӳ���
-		int gcd = Math.abs(gcd(numUp, numDown));// ���Լ��
+		int num = numUp / numDown;
+		numUp = numUp - numDown * num;
+		int gcd = Math.abs(gcd(numUp, numDown));
 		numUp /= gcd;
 		numDown /= gcd;
 		String re = "";
@@ -45,8 +45,7 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
-		} catch (java.io.FileNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
 		}
 		Scanner in = new Scanner(System.in);
 		int n = in.nextInt();

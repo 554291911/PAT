@@ -1,10 +1,14 @@
 package A1062TalentandVirtue25;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
 	static class Man {
@@ -27,17 +31,12 @@ public class Main {
 		}
 	}
 
-	static boolean LOCAL = System.getSecurityManager() == null;
-
 	public static void main(String[] args) {
-		if (LOCAL) {
-			try {
-				System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
-			} catch (FileNotFoundException e) {
-				LOCAL = false;
-			}
+		try {
+			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
+		} catch (FileNotFoundException e) {
 		}
-		Scanner in = new Scanner(System.in);
+		InputReader in = new InputReader(System.in);
 		int num = in.nextInt();
 		int L = in.nextInt();
 		int H = in.nextInt();
@@ -77,6 +76,31 @@ public class Main {
 		System.out.println(list.size());
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i).toString());
+		}
+	}
+
+	static class InputReader {
+		public BufferedReader reader;
+		public StringTokenizer tokenizer;
+
+		public InputReader(InputStream stream) {
+			reader = new BufferedReader(new InputStreamReader(stream), 32768);
+			tokenizer = null;
+		}
+
+		public int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+		public String next() {
+			while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+				try {
+					tokenizer = new StringTokenizer(reader.readLine());
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			return tokenizer.nextToken();
 		}
 	}
 }

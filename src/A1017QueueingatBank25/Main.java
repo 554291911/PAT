@@ -1,5 +1,9 @@
 package A1017QueueingatBank25;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -7,7 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 class Line {
 	ArrayList<String> list;
@@ -32,7 +36,6 @@ class Line {
 		int wait = 0;
 		int time = parseInt(t);
 		int ftime = parseInt(free);
-		String waitTime = reverseString(time);
 		if (ftime > time) {
 			wait += ftime - time;
 			list.set(p, reverseString(ftime + value * 60));
@@ -74,7 +77,7 @@ public class Main {
 		} catch (java.io.FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		Scanner in = new Scanner(System.in);
+		InputReader in = new InputReader(System.in);
 		int N = in.nextInt();
 		int num = in.nextInt();
 		Line l = new Line(num);
@@ -98,5 +101,30 @@ public class Main {
 		int ave = wait / list.size();
 		double d = ave / 60 + (ave - ave / 60 * 60) / 60.0;
 		System.out.println(new BigDecimal(d).setScale(1, RoundingMode.HALF_UP));
+	}
+
+	static class InputReader {
+		public BufferedReader reader;
+		public StringTokenizer tokenizer;
+
+		public InputReader(InputStream stream) {
+			reader = new BufferedReader(new InputStreamReader(stream), 32768);
+			tokenizer = null;
+		}
+
+		public int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+		public String next() {
+			while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+				try {
+					tokenizer = new StringTokenizer(reader.readLine());
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			return tokenizer.nextToken();
+		}
 	}
 }

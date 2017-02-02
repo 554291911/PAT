@@ -1,10 +1,10 @@
-package A1065AplusBandC64bit20;
+package A1037MagicCoupon25;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -12,36 +12,27 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 		}
 		InputReader in = new InputReader(System.in);
-		Task solver = new Task();
-		solver.solve(in);
-	}
-
-	static class Task {
-		public void solve(InputReader in) {
-			int num = in.nextInt();
-			for (int i = 0; i < num; i++) {
-				long A = Long.parseLong(in.next());
-				long B = Long.parseLong(in.next());
-				long C = Long.parseLong(in.next());
-				long r = A + B;
-				boolean flag;
-				if (A > 0 && B > 0 && r < 0)
-					flag = true;
-				else if (A < 0 && B < 0 && r >= 0)
-					flag = false;
-				else if (r > C)
-					flag = true;
-				else
-					flag = false;
-				if (flag)
-					System.out.println("Case #" + (i + 1) + ": true");
-				else
-					System.out.println("Case #" + (i + 1) + ": false");
-			}
-		}
+		int c = in.nextInt();
+		long[] cou = new long[c];
+		for (int i = 0; i < c; i++)
+			cou[i] = Long.parseLong(in.next());
+		Arrays.sort(cou);
+		int p = in.nextInt();
+		long[] pro = new long[p];
+		for (int i = 0; i < p; i++)
+			pro[i] = Long.parseLong(in.next());
+		Arrays.sort(pro);
+		int result = 0;
+		while (cou[--c] > 0 && pro[--p] > 0)
+			result += cou[c] * pro[p];
+		c = 0;
+		p = 0;
+		while (cou[c] < 0 && pro[p] < 0)
+			result += cou[c++] * pro[p++];
+		System.out.println(result);
 	}
 
 	static class InputReader {

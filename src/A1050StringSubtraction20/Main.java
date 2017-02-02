@@ -5,17 +5,11 @@ import java.util.Scanner;
 
 public class Main {
 
-	static boolean LOCAL = System.getSecurityManager() == null;
-
 	public static void main(String[] args) {
-		if (LOCAL) {
-			try {
-				System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
-			} catch (FileNotFoundException e) {
-				LOCAL = false;
-			}
+		try {
+			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
+		} catch (FileNotFoundException e) {
 		}
-		long start = System.currentTimeMillis();
 		Scanner in = new Scanner(System.in);
 		String t = in.nextLine();
 		String s = in.nextLine();
@@ -25,6 +19,5 @@ public class Main {
 				t = t.replaceAll(ss[i] + "", "");
 		}
 		System.out.println(t);
-		System.out.println(System.currentTimeMillis() - start);
 	}
 }

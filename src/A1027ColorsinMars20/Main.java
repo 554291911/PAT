@@ -1,4 +1,4 @@
-package ColorsinMars;
+package A1027ColorsinMars20;
 
 import java.util.Scanner;
 
@@ -27,8 +27,7 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
-		} catch (java.io.FileNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
 		}
 		Scanner in = new Scanner(System.in);
 		int red = in.nextInt();

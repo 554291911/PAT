@@ -5,15 +5,10 @@ import java.util.Scanner;
 
 public class Main {
 
-	static boolean LOCAL = System.getSecurityManager() == null;
-
 	public static void main(String[] args) {
-		if (LOCAL) {
-			try {
-				System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
-			} catch (FileNotFoundException e) {
-				LOCAL = false;
-			}
+		try {
+			System.setIn(new java.io.FileInputStream(Main.class.getResource("input.txt").toString().substring(6)));
+		} catch (FileNotFoundException e) {
 		}
 		Scanner in = new Scanner(System.in);
 		String flag = in.nextLine();
