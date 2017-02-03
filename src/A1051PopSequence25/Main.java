@@ -1,10 +1,10 @@
-package A1054TheDominantColor20;
+package A1051PopSequence25;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -18,24 +18,33 @@ public class Main {
 	static InputReader in = new InputReader(System.in);
 
 	public static void main(String[] args) {
-		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-		int row = in.nextInt();
-		int col = in.nextInt();
-		int total = (row * col) / 2;
-		for (int i = 0; i < row; i++) {
-			for (int j = 0; j < col; j++) {
-				int temp = in.nextInt();
-				if (map.get(temp) == null)
-					map.put(temp, 1);
-				else {
-					int value = map.get(temp);
-					if (++value >= total) {
-						System.out.println(temp);
-						return;
-					}
-					map.put(temp, value);
+		int n1 = in.nextInt();
+		int n2 = in.nextInt();
+		int T = in.nextInt();
+		Stack<Integer> s = new Stack<Integer>();
+		int[] arr = new int[n2 + 1];
+		while (T-- != 0) {
+			if (!s.isEmpty())
+				s.clear();
+			boolean flag = true;
+			int current = 1;
+			for (int i = 1; i <= n2; i++)
+				arr[i] = in.nextInt();
+			for (int i = 1; i <= n2; i++) {
+				s.push(i);
+				if (s.size() > n1) {
+					flag = false;
+					break;
+				}
+				while (!s.isEmpty() && s.peek() == arr[current]) {
+					s.pop();
+					current++;
 				}
 			}
+			if (s.isEmpty() && flag)
+				System.out.println("YES");
+			else
+				System.out.println("NO");
 		}
 	}
 
